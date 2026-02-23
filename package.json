@@ -21,7 +21,6 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@10.9.4",
   "dependencies": {
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
@@ -39,5 +38,8 @@
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.58.0"
   }
 }
