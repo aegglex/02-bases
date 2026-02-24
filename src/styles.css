@@ -1,5 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: 'Oswald';
+  src: url('./assets/fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 700; /* rango que cubre ExtraLight hasta Bold */
+  font-style: normal;
+}
+
+*{
+  font-family: 'Oswald', sans-serif;
+  font-style: normal;
+}
+
+.notes {
+  font-style: oblique;
+}
+
 dd {
   font-size: 20px;
   font-weight: bold;

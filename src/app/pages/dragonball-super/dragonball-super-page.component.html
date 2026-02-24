@@ -1,0 +1,68 @@
+<h1>Dragon Ball Super Page</h1>
+<hr />
+
+<h2>Esta es la pagina de DragonBall Super</h2>
+
+<section class="row">
+
+  <div class="col-12 col-sm-6">
+    <h3>Agregar: {{ name() }} ( {{ power()}} ) </h3>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre"
+      [value]="name()"
+      (change)="name.set(txtName.value)"
+      (input)="name.set(txtName.value)"
+      #txtName
+    />
+
+    <input
+      type="number"
+      class="form-control mt-2"
+      placeholder="Poder"
+      [value]="power()"
+      (change)="power.set(+txtPower.value)"
+      (input)="power.set(+txtPower.value)"
+
+      #txtPower
+    />
+
+    <button (click)="addCharacter()" class="mt-2 btn btn-primary">Agregar</button>
+
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <h3>Listado/Fuertes</h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+      @if (character.power > 500 ) {
+        <li>
+        <span>{{ idx + 1 }} - {{ character.name }} </span>
+
+        <strong
+          [class.text-danger]="character.power > 9000"
+          [class.text-primary]="character.power < 9000"
+        >
+          ( {{character.power }} ) </strong
+        >
+
+        <!-- [ngClass]="powerClasses()" -->
+      </li>
+      } @else {
+        <li><strong>Aqui no hay nadie</strong></li>
+      }
+
+      }
+    </ul>
+  </div>
+  <p class="notes">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ipsam voluptatibus autem ratione illo quos m
+    odi quidem suscipit pariatur, iste dolore debitis atque veritatis
+    rerum rem eos voluptatum. Culpa odio omnis,
+    fuga nam nisi debitis quasi architecto doloribus necessitatibus excepturi quis, praesentium laboriosam? A inventore similique
+    dolores quas asperiores. Incidunt labore numquam vero eveniet necessitatibus?
+  </p>
+
+
+</section>
