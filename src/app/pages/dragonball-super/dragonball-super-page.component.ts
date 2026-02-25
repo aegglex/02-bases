@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { CharacterList } from "../../components/dragonball/character-list/character-list";
 
 interface Character{
   id: number;
@@ -8,21 +9,17 @@ interface Character{
 
 @Component({
   selector: 'app-dragonball-super-page.component',
-  imports: [
-    // NgClass
-  ],
   templateUrl: './dragonball-super-page.component.html',
+  imports: [CharacterList],
 })
 
 export class DragonballSuperPageComponent {
-  name = signal('Gohan');
-  power = signal(100);
+  name = signal('');
+  power = signal(0);
 
   characters = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
     { id: 2, name: 'Vegeta', power: 8000 },
-    { id: 4, name: 'Yamcha', power: 500 },
-    { id: 3, name: 'Piccolo', power: 3000 },
   ]);
 
   addCharacter() {
@@ -40,8 +37,6 @@ export class DragonballSuperPageComponent {
       power: this.power(),
     }
 
-    // this.characters().push(newCharacter); no es recomendable usar valores como push porque trabajamos con señales
-
     this.characters.update ( (list) => [...list, newCharacter] );
     this.resetFields();
   }
@@ -50,10 +45,4 @@ export class DragonballSuperPageComponent {
     this.name.set('');
     this.power.set(0);
   }
-
-  // powerClasses = computed(() => {
-  //   return {
-  //     'text-danger': true,
-  //   };
-  // });
 }
