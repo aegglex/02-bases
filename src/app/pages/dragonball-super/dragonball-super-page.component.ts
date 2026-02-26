@@ -1,48 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CharacterList } from "../../components/dragonball/character-list/character-list";
-
-interface Character{
-  id: number;
-  name: string;
-  power: number;
-}
+import { CharacterAdd } from "../../components/dragonball/character-add/character-add";
+import { DragonballService } from '../../services/dragonball.services';
 
 @Component({
-  selector: 'app-dragonball-super-page.component',
+  selector: 'dragonball-super',
   templateUrl: './dragonball-super-page.component.html',
-  imports: [CharacterList],
+  imports: [CharacterList, CharacterAdd],
 })
 
 export class DragonballSuperPageComponent {
-  name = signal('');
-  power = signal(0);
 
-  characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 },
-    { id: 2, name: 'Vegeta', power: 8000 },
-  ]);
+  // Esto es la fomra tradicional de DI(Inyeccion de dependencias)
+// constructor(
+//   public dragonballService: DragonballService,
+// ) {}
 
-  addCharacter() {
-    console.log(`Valor cargado: ${this.name()} ( ${this.power()} )`)
+public DragonballService = inject(DragonballService);
 
-    if ( !this.name() || !this.power() || this.power() <= 0) {
-      console.error('Valor rechazado!🔴❌')
-      return;
-    }
-
-    console.log('Valor agregado!🟢✅')
-    const newCharacter: Character = {
-      id: this.characters().length + 1,
-      name: this.name(),
-      power: this.power(),
-    }
-
-    this.characters.update ( (list) => [...list, newCharacter] );
-    this.resetFields();
-  }
-
-  resetFields() {
-    this.name.set('');
-    this.power.set(0);
-  }
 }
